@@ -1,6 +1,41 @@
 #!/bin/bash
 
-# Backup
+###############################################################################
+#   Project:				SIGA-CCB
+#   Component Name:			req2ea (MS Word requirements to Sparx EA)
+#   Language:				bash
+#
+#   License: 				GNU Public License
+#		This file is part of req2ea.
+#		Foobar is free software: you can redistribute it and/or modify
+#		it under the terms of the GNU General Public License as published by
+#		the Free Software Foundation, either version 3 of the License, or
+#		(at your option) any later version.
+#
+#		Foobar is distributed in the hope that it will be useful,
+#		but WITHOUT ANY WARRANTY; without even the implied warranty of
+#		MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#		GNU General Public License for more details.
+#
+#		You should have received a copy of the GNU General Public License
+#		along with Foobar.  If not, see <http://www.gnu.org/licenses/>. 
+#
+#   Author: 				Albert De La Fuente (www.albertdelafuente.com)
+#   E-Mail: 				vonpupp@gmail.com
+#
+#   Description:			This is the main script that does the invocation
+#		of the other scripts with the appropriate parameters
+#
+#   Limitations:			Error handling is not implemented, time constraints
+#		The code is not clean and elegant as it should, again, time constraints
+#   Database tables used:	None 
+#   Thread Safe:			No
+#   Extendable:				No
+#   Platform Dependencies:	Linux (openSUSE used)
+#   Compiler Options:		
+#   Parameters:				$0 file-input file-output	
+###############################################################################
+
 FINPUT=$1
 
 FINPUT="REQ_CTB-v6"
