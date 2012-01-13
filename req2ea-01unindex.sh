@@ -64,5 +64,6 @@ sed -i 's/RN. , RN. , /RN. ,/g' $FOUT
 #sed -i 's/. , /. ,/g' $1
 
 # Output file
+echo "$0"
 echo "input: $FIN"
 echo "output: $FOUT"

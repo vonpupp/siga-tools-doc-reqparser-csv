@@ -49,6 +49,6 @@ python req2ea-03quote.py $FINPUT.021 $FINPUT.022 "RFN. ,"
 python req2ea-03quote.py $FINPUT.022 $FINPUT.023 "RNF. ,"
 python req2ea-03quote.py $FINPUT.023 $FINPUT.024 "RN. ,"
 cp $FINPUT.024 $FINPUT.030
-source req2ea-04index.sh $FINPUT.030 $FINPUT.040 10 20 30 40
+source req2ea-04index.sh $FINPUT.030 $FINPUT.040 0 0 0 0
 source req2ea-05posformat.sh $FINPUT.040 $FINPUT.050
 

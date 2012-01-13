@@ -125,10 +125,10 @@ awk '/^RNF\. / {getline t; print $0", "t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.t
 awk '/^RN\. / {getline t; print $0", "t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
 
 # Bring the third parameter (first lie) to the prior line
-awk '/^RFI\. / {getline t; print $0","t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
-awk '/^RFN\. / {getline t; print $0","t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
-awk '/^RNF\. / {getline t; print $0","t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
-awk '/^RN\. / {getline t; print $0","t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
+awk '/^RFI\. / {getline t; print $0", "t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
+awk '/^RFN\. / {getline t; print $0", "t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
+awk '/^RNF\. / {getline t; print $0", "t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
+awk '/^RN\. / {getline t; print $0", "t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
 
 #awk '/^, Medium/ {getline t; print $0", "t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
 #sed -i ':a; $!N;s/\n, Medium;/ /;ta;P;D'

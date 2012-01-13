@@ -43,10 +43,34 @@ import fileinput, sys, codecs
 fileencoding = "iso-8859-1"
 
 def reverseReplace(s, old, new, occurrence):
-  li = s.rsplit(old, occurrence)
+  li = s.rsplit(old, occurrence) # Reverse split by the las ocurrence
   return new.join(li)
+  
+def extractThirdField(s):
+  a, b, c = s.partition(", ") # Remove the first parameter
+  a, b, c = c.partition(", ") # Remove the second parameter
+  a, b, c = c.rpartition(", ") # Remove the last parameter
+  li = a
+  return li
+  
+def leftQuoteThirdField(s):
+  a, b, rest = s.partition(", ") # Remove the first parameter
+  c, d, rest = rest.partition(", ") # Remove the second parameter
+  li = a + b + c + d + '"' + rest
+  #print "a=" + a
+  #print "b=" + b
+  #print "c=" + c
+  #print "d=" + d
+  #print "e=" + e
+  #print "f=" + f
+  return li
 
-def parseMultiTag(inputfilename, outputfilename, searchExp):
+def rightQuoteThirdField(s):
+  a, b, c = s.rpartition(",") # Remove the last parameter
+  li = a + '"' + b + c
+  return li
+
+def parseTag(inputfilename, outputfilename, searchExp):
   fin = fileinput.input(inputfilename, inplace = 0, openhook = fileinput.hook_encoded(fileencoding))
   fout = codecs.open(outputfilename, "w", fileencoding)
   isblock = 0
@@ -54,15 +78,30 @@ def parseMultiTag(inputfilename, outputfilename, searchExp):
     newline = line
     isfirst = searchExp in line
     islast = ", Medium;" in line
-    if isfirst and not islast:
-      newline = reverseReplace(line, searchExp, searchExp + ' "', 1)
+    issingleline = isfirst and islast # and "," in line
+    fixquotes = 0
+
+    if issingleline:
+      fixquotes = "," in extractThirdField(line) # If there is a comma on the third fild, quote it!
+      if fixquotes:
+	newline = leftQuoteThirdField(line)
+	newline = rightQuoteThirdField(newline)
+	print "%d: %s" % (fileinput.filelineno(), newline)
+#	print "%d:(issingle):%s" % (fileinput.filelineno(), newline)
+
+    if (not issingleline) and (isfirst and not islast):
+      #newline = reverseReplace(line, searchExp, searchExp + '"', 1)
+      newline = leftQuoteThirdField(line)
+      print "quoting left"
       isblock = 1
-    if not isfirst and islast and isblock:
+    if (not issingleline) and (not isfirst and islast and isblock):
       newline = reverseReplace(line, ", Medium;", '"' + ", Medium;", 1)
+      print "quoting right"
       isblock = 0
     #TODO: Fix the single line comma bug
     fout.write(newline)
-#    print "%d: %s" % (fileinput.filelineno(), newline)
+    if issingleline:
+      print "%d: %s" % (fileinput.filelineno(), newline)
   fout.close()
 
 # MAIN
@@ -72,7 +111,7 @@ if len(sys.argv) != 4:  # the program name and the two arguments
   
 fin=sys.argv[1]
 fout=sys.argv[2]
-parseMultiTag(fin, fout, sys.argv[3]);
+parseTag(fin, fout, sys.argv[3]);
 
 print "input: " + fin
 print "output: " + fout
