@@ -1,40 +1,40 @@
 #!/bin/bash
 
 ###############################################################################
-#   Project:				SIGA-CCB
-#   Component Name:			req2ea (MS Word requirements to Sparx EA)
-#   Language:				bash
+#   Project:			SIGA-CCB
+#   Component Name:		req2ea (MS Word requirements to Sparx EA)
+#   Language:			bash
 #
-#   License: 				GNU Public License
-#		This file is part of req2ea.
-#		Foobar is free software: you can redistribute it and/or modify
-#		it under the terms of the GNU General Public License as published by
-#		the Free Software Foundation, either version 3 of the License, or
-#		(at your option) any later version.
+#   License: 			GNU Public License
+#	This file is part of req2ea.
+#	Foobar is free software: you can redistribute it and/or modify
+#	it under the terms of the GNU General Public License as published by
+#	the Free Software Foundation, either version 3 of the License, or
+#	(at your option) any later version.
 #
-#		Foobar is distributed in the hope that it will be useful,
-#		but WITHOUT ANY WARRANTY; without even the implied warranty of
-#		MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#		GNU General Public License for more details.
+#	Foobar is distributed in the hope that it will be useful,
+#	but WITHOUT ANY WARRANTY; without even the implied warranty of
+#	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#	GNU General Public License for more details.
 #
-#		You should have received a copy of the GNU General Public License
-#		along with Foobar.  If not, see <http://www.gnu.org/licenses/>. 
+#	You should have received a copy of the GNU General Public License
+#	along with Foobar.  If not, see <http://www.gnu.org/licenses/>. 
 #
-#   Author: 				Albert De La Fuente (www.albertdelafuente.com)
-#   E-Mail: 				vonpupp@gmail.com
+#   Author: 			Albert De La Fuente (www.albertdelafuente.com)
+#   E-Mail: 			vonpupp@gmail.com
 #
-#   Description:			This script allows to preformat the text by
-#		removing Heading1..Heading4, trimming whitespaces, etc.
-#		Read the code, it's pretty much straight forward and self explainatory 
+#   Description:		This script allows to preformat the text by
+#	removing Heading1..Heading4, trimming whitespaces, etc.
+#	Read the code, it's pretty much straight forward and self explainatory 
 #
-#   Limitations:			Error handling is not implemented, time constraints
-#		The code is not clean and elegant as it should, again, time constraints
+#   Limitations:		Error handling is not implemented, time constraints
+#	The code is not clean and elegant as it should, again, time constraints
 #   Database tables used:	None 
-#   Thread Safe:			No
-#   Extendable:				No
+#   Thread Safe:		No
+#   Extendable:			No
 #   Platform Dependencies:	Linux (openSUSE used)
 #   Compiler Options:		
-#   Parameters:				$0 file-input file-output	
+#   Parameters:			$0 file-input file-output	
 ###############################################################################
 
 # Result file
@@ -43,6 +43,11 @@ FIN=$1
 FOUT=$2
 
 # LC_ALL=en_US.utf8
+
+# Trim whitespaces
+sed -i 's/^[ \t]*//' $FOUT
+sed -i 's/[ \t]*$//' $FOUT
+sed -i 's/^[ \t]*//;s/[ \t]*$//' $FOUT
 
 # Clean the index and document header
 #sed -i '/^HISTÓRICO DE TRABALHO:/,/^FUNCIONALIDADE/d' $FOUT
@@ -59,6 +64,8 @@ sed -i '/^PROCESSO:/,/^FUNCIONALIDADE/d' $FOUT
 # Delete FUNCIONALIDADE
 sed -i '/^FUNCIONALIDADE/d' $FOUT
 #sed -i '/^PROCESSO:/,/^$/d' $FOUT
+sed -i '/^Descrição:/d' $FOUT
+#sed -i '/^Descrição:/,/^Nome/d' $FOUT
 
 # Clean Heading4
 sed -i '/^REQUISITOS/d' $FOUT
@@ -68,20 +75,17 @@ sed -i '/^REGRAS DE NEGOCIO/d' $FOUT
 # Clean columns headers
 sed -i '/^Nome/d' $FOUT
 sed -i '/^Alias/d' $FOUT
-sed -i '/^Criticidade/d' $FOUT
+#sed -i '/^Descrição/d' $FOUT
 sed -i '/^Descri/d' $FOUT
-
-# Trim whitespaces
-sed -i 's/^[ \t]*//' $FOUT
-sed -i 's/[ \t]*$//' $FOUT
-sed -i 's/^[ \t]*//;s/[ \t]*$//' $FOUT
+sed -i '/^Criticidade/d' $FOUT
 
 #sed -i 's/^[[:space:]]*\(.*\)[[:space:]]*$/\1/' $FOUT
 
 # Trim CRLF
 dos2unix $FOUT
 sed -i '/^$/d' $FOUT
-sed -i 's/^Media/Media\n/' $FOUT
+sed -i 's/^Media/, Medium;\n/g' $FOUT
+#sed -i 's/^Media/Media\n/' $FOUT
 
 # sed -i s//./g $FOUT
 
@@ -126,8 +130,6 @@ awk '/^RFN\. / {getline t; print $0","t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tm
 awk '/^RNF\. / {getline t; print $0","t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
 awk '/^RN\. / {getline t; print $0","t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
 
-# Adding a quote on the fourth param (close)
-sed -i 's/^Media/, Medium;/g' $FOUT
 #awk '/^, Medium/ {getline t; print $0", "t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
 #sed -i ':a; $!N;s/\n, Medium;/ /;ta;P;D'
 #sed -i ':a; $!N;s/Medium/ /;ta;P;D' $FOUT
