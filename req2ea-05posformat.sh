@@ -47,7 +47,7 @@ sed -i 's/Requirement	/Requirement	"\n/g' $FOUT
 
 # Prepend the header "Name, Alias, Type, Notes, Priority"
 cp $FOUT $FOUT.tmp
-echo "Name	Alias	Type	Notes	Priority" > $FOUT
+echo "Name	Alias	Type	Notes	Priority	Author" > $FOUT
 cat $FOUT.tmp >> $FOUT
 rm $FOUT.tmp
 

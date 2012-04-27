@@ -84,7 +84,7 @@ sed -i '/^Criticidade/d' $FOUT
 # Trim CRLF
 dos2unix $FOUT
 sed -i '/^$/d' $FOUT
-sed -i 's/^Media/"	Medium;\n/g' $FOUT
+sed -i 's/^Media/"	Medium	Albert De La Fuente\n/g' $FOUT
 #sed -i 's/^Media/Media\n/' $FOUT
 
 # sed -i s//./g $FOUT
