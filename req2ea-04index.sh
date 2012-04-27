@@ -70,7 +70,7 @@ tagindex() {
     # Parsing the second tag
     awk '/'$TAG'\. /{\
       if (SECOND==""){\
-	sub("'$TAG'\. ","'$TAG${IDX}'., Requirement");
+	sub("'$TAG'\. ","'$TAG${IDX}'.	Requirement");
 	SECOND=1}
       }
       {print}' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp

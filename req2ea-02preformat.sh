@@ -84,7 +84,7 @@ sed -i '/^Criticidade/d' $FOUT
 # Trim CRLF
 dos2unix $FOUT
 sed -i '/^$/d' $FOUT
-sed -i 's/^Media/, Medium;\n/g' $FOUT
+sed -i 's/^Media/"	Medium;\n/g' $FOUT
 #sed -i 's/^Media/Media\n/' $FOUT
 
 # sed -i s//./g $FOUT
@@ -119,16 +119,16 @@ sed -i 's/^RNF\./RNF. /' $FOUT
 sed -i 's/^RN\./RN. /' $FOUT
 
 # Bring the second parameter to the prior line
-awk '/^RFI\. / {getline t; print $0", "t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
-awk '/^RFN\. / {getline t; print $0", "t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
-awk '/^RNF\. / {getline t; print $0", "t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
-awk '/^RN\. / {getline t; print $0", "t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
+awk '/^RFI\. / {getline t; print $0"	"t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
+awk '/^RFN\. / {getline t; print $0"	"t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
+awk '/^RNF\. / {getline t; print $0"	"t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
+awk '/^RN\. / {getline t; print $0"	"t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
 
 # Bring the third parameter (first lie) to the prior line
-awk '/^RFI\. / {getline t; print $0", "t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
-awk '/^RFN\. / {getline t; print $0", "t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
-awk '/^RNF\. / {getline t; print $0", "t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
-awk '/^RN\. / {getline t; print $0", "t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
+awk '/^RFI\. / {getline t; print $0"	"t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
+awk '/^RFN\. / {getline t; print $0"	"t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
+awk '/^RNF\. / {getline t; print $0"	"t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
+awk '/^RN\. / {getline t; print $0"	"t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
 
 #awk '/^, Medium/ {getline t; print $0", "t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
 #sed -i ':a; $!N;s/\n, Medium;/ /;ta;P;D'

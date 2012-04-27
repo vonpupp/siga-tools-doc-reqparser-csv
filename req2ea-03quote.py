@@ -47,15 +47,15 @@ def reverseReplace(s, old, new, occurrence):
   return new.join(li)
   
 def extractThirdField(s):
-  a, b, c = s.partition(", ") # Remove the first parameter
-  a, b, c = c.partition(", ") # Remove the second parameter
-  a, b, c = c.rpartition(", ") # Remove the last parameter
+  a, b, c = s.partition("\t") # Remove the first parameter
+  a, b, c = c.partition("\t") # Remove the second parameter
+  a, b, c = c.rpartition("\t") # Remove the last parameter
   li = a
   return li
   
 def leftQuoteThirdField(s):
-  a, b, rest = s.partition(", ") # Remove the first parameter
-  c, d, rest = rest.partition(", ") # Remove the second parameter
+  a, b, rest = s.partition("\t") # Remove the first parameter
+  c, d, rest = rest.partition("\t") # Remove the second parameter
   li = a + b + c + d + '"' + rest
   #print "a=" + a
   #print "b=" + b
@@ -77,12 +77,12 @@ def parseTag(inputfilename, outputfilename, searchExp):
   for line in fin:
     newline = line
     isfirst = searchExp in line
-    islast = ", Medium;" in line
+    islast = "\tMedium;" in line
     issingleline = isfirst and islast # and "," in line
     fixquotes = 0
 
     if issingleline:
-      fixquotes = "," in extractThirdField(line) # If there is a comma on the third fild, quote it!
+      fixquotes = "\t" in extractThirdField(line) # If there is a comma on the third fild, quote it!
       if fixquotes:
 	newline = leftQuoteThirdField(line)
 	newline = rightQuoteThirdField(newline)
@@ -95,7 +95,7 @@ def parseTag(inputfilename, outputfilename, searchExp):
       print "quoting left"
       isblock = 1
     if (not issingleline) and (not isfirst and islast and isblock):
-      newline = reverseReplace(line, ", Medium;", '"' + ", Medium;", 1)
+      newline = reverseReplace(line, "\tMedium;", '"' + "\tMedium;", 1)
       print "quoting right"
       isblock = 0
     #TODO: Fix the single line comma bug

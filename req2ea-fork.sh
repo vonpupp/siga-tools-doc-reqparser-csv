@@ -23,7 +23,8 @@
 #   Author: 			Albert De La Fuente (www.albertdelafuente.com)
 #   E-Mail: 			vonpupp@gmail.com
 #
-#   Description:		This does final formating, minor stuff
+#   Description:		This is the main script that does the invocation
+#	of the other scripts with the appropriate parameters
 #
 #   Limitations:		Error handling is not implemented, time constraints
 #	The code is not clean and elegant as it should, again, time constraints
@@ -35,24 +36,19 @@
 #   Parameters:			$0 file-input file-output	
 ###############################################################################
 
-# Result file
-cp $1 $2
-FIN=$1
-FOUT=$2
+FINPUT=$1
 
-sed -i '/^$/d' $FOUT
-sed -i 's/Requirement	/Requirement	"\n/g' $FOUT
-#sed -i 's/^RFI[[:digit:]][[:digit:]][[:digit:]]. //g' $FOUT
-#sed -i 's/^RFN[[:digit:]][[:digit:]][[:digit:]]. //g' $FOUT
+#FINPUT="req-jur-v2"
+#./catdoc -s ../charsets/8859-1.txt -d ../charsets/8859-1.txt REQ_CTB-v5.doc 
 
-# Prepend the header "Name, Alias, Type, Notes, Priority"
-cp $FOUT $FOUT.tmp
-echo "Name	Alias	Type	Notes	Priority" > $FOUT
-cat $FOUT.tmp >> $FOUT
-rm $FOUT.tmp
+#catdoc -s8859-1 -d8859-1 $FINPUT.doc > $FINPUT.cat
+cp $FINPUT $FINPUT.010
+source req2ea-02preformat.sh $FINPUT.010 $FINPUT.020
+python req2ea-03quote.py $FINPUT.020 $FINPUT.021 "RFI. ,"
+python req2ea-03quote.py $FINPUT.021 $FINPUT.022 "RFN. ,"
+python req2ea-03quote.py $FINPUT.022 $FINPUT.023 "RNF. ,"
+python req2ea-03quote.py $FINPUT.023 $FINPUT.024 "RN. ,"
+cp $FINPUT.024 $FINPUT.030
+source req2ea-04index.sh $FINPUT.030 $FINPUT.040 0 0 0 0
+source req2ea-05posformat.sh $FINPUT.040 $FINPUT.050
 
-cp $FOUT $FOUT.csv
-
-echo "input: $1"
-echo "output: $FOUT"
-echo "NOTE: DO NOT FORGET TO REMOVE THE HEADERS & FOOTERS!!!"
