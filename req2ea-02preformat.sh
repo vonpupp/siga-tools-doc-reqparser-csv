@@ -113,22 +113,22 @@ sed -i "s/\x93/'/" $FOUT # Replace MS Words single quote (open HEX 0x93) with th
 sed -i "s/\x94/'/" $FOUT # Replace MS Words single quote (close HEX 0x93) with the ascii one
 
 # Ensure there is a space after each tag
-sed -i 's/^RFI\./RFI. /' $FOUT
-sed -i 's/^RFN\./RFN. /' $FOUT
-sed -i 's/^RNF\./RNF. /' $FOUT
-sed -i 's/^RN\./RN. /' $FOUT
+sed -i 's/^TAGRFI\./TAGRFI. /' $FOUT
+sed -i 's/^TAGRFN\./TAGRFN. /' $FOUT
+sed -i 's/^TAGRNF\./TAGRNF. /' $FOUT
+sed -i 's/^TAGRGN\./TAGRGN. /' $FOUT
 
 # Bring the second parameter to the prior line
-awk '/^RFI\. / {getline t; print $0"	"t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
-awk '/^RFN\. / {getline t; print $0"	"t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
-awk '/^RNF\. / {getline t; print $0"	"t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
-awk '/^RN\. / {getline t; print $0"	"t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
+awk '/^TAGRFI\. / {getline t; print $0"	"t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
+awk '/^TAGRFN\. / {getline t; print $0"	"t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
+awk '/^TAGRNF\. / {getline t; print $0"	"t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
+awk '/^TAGRGN\. / {getline t; print $0"	"t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
 
 # Bring the third parameter (first lie) to the prior line
-awk '/^RFI\. / {getline t; print $0"	"t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
-awk '/^RFN\. / {getline t; print $0"	"t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
-awk '/^RNF\. / {getline t; print $0"	"t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
-awk '/^RN\. / {getline t; print $0"	"t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
+awk '/^TAGRFI\. / {getline t; print $0"	"t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
+awk '/^TAGRFN\. / {getline t; print $0"	"t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
+awk '/^TAGRNF\. / {getline t; print $0"	"t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
+awk '/^TAGRGN\. / {getline t; print $0"	"t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
 
 #awk '/^, Medium/ {getline t; print $0", "t; next}; 1' $FOUT > $FOUT.tmp;cp $FOUT.tmp $FOUT;\rm $FOUT.tmp
 #sed -i ':a; $!N;s/\n, Medium;/ /;ta;P;D'

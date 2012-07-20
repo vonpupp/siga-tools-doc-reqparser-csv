@@ -47,7 +47,7 @@ source req2ea-02preformat.sh $FINPUT.010 $FINPUT.020
 python req2ea-03quote.py $FINPUT.020 $FINPUT.021 "RFI. ,"
 python req2ea-03quote.py $FINPUT.021 $FINPUT.022 "RFN. ,"
 python req2ea-03quote.py $FINPUT.022 $FINPUT.023 "RNF. ,"
-python req2ea-03quote.py $FINPUT.023 $FINPUT.024 "RN. ,"
+python req2ea-03quote.py $FINPUT.023 $FINPUT.024 "RGN. ,"
 cp $FINPUT.024 $FINPUT.030
 source req2ea-04index.sh $FINPUT.030 $FINPUT.040 0 0 0 0
 source req2ea-05posformat.sh $FINPUT.040 $FINPUT.050

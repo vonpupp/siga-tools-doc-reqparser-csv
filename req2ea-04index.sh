@@ -79,28 +79,28 @@ tagindex() {
 
 NTAG=0
 IDX=0
-tagindex "RFI" $3
+tagindex "TAGRFI" $3
 let NRFI=$3 + 1
 NRFIT=$NTAG
 OFFNRFI=$IDX
 
 NTAG=0
 IDX=0
-tagindex "RFN" $4
+tagindex "TAGRFN" $4
 let NRFN=$4 + 1
 NRFNT=$NTAG
 OFFNRFN=$IDX
 
 NTAG=0
 IDX=0
-tagindex "RNF" $5
+tagindex "TAGRNF" $5
 let NRNF=$5 + 1
 NRNFT=$NTAG
 OFFNRNF=$IDX
 
 NTAG=0
 IDX=0
-tagindex "RN" $6
+tagindex "TAGRGN" $6
 let NRN=$6 + 1
 NRNT=$NTAG
 OFFNRN=$IDX
@@ -125,4 +125,4 @@ echo "output: $FOUT"
 echo "Number or RFI's: $NRFIT / From: $NRFI to $OFFNRFI"
 echo "Number or RFN's: $NRFNT / From: $NRFN to $OFFNRFN"
 echo "Number or RNF's: $NRNFT / From: $NRNF to $OFFNRNF"
-echo "Number or RN's: $NRNT / From: $NRN to $OFFNRN"
+echo "Number or RGN's: $NRNT / From: $NRN to $OFFNRN"

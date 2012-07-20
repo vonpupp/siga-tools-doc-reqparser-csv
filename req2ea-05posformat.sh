@@ -42,6 +42,10 @@ FOUT=$2
 
 sed -i '/^$/d' $FOUT
 sed -i 's/Requirement	/Requirement	"\n/g' $FOUT
+sed -i 's/^TAGRFI/RFI/g' $FOUT
+sed -i 's/^TAGRFN/RFN/g' $FOUT
+sed -i 's/^TAGRNF/RNF/g' $FOUT
+sed -i 's/^TAGRGN/RGN/g' $FOUT
 #sed -i 's/^RFI[[:digit:]][[:digit:]][[:digit:]]. //g' $FOUT
 #sed -i 's/^RFN[[:digit:]][[:digit:]][[:digit:]]. //g' $FOUT
 

@@ -41,26 +41,26 @@ cp $1 $2
 FIN=$1
 FOUT=$2
 
-sed -i 's/^RFI[[:digit:]][[:digit:]][[:digit:]]/RFI/g' $FOUT
-sed -i 's/^RFI [[:digit:]][[:digit:]]/RFI/g' $FOUT
-sed -i 's/^RFI [[:digit:]]/RFI/g' $FOUT
+sed -i 's/^RFI[[:digit:]][[:digit:]][[:digit:]]/TAGRFI/g' $FOUT
+sed -i 's/^RFI [[:digit:]][[:digit:]]/TAGRFI/g' $FOUT
+sed -i 's/^RFI [[:digit:]]/TAGRFI/g' $FOUT
 
-sed -i 's/^RFN[[:digit:]][[:digit:]][[:digit:]]/RFN/g' $FOUT
-sed -i 's/^RFN [[:digit:]][[:digit:]]/RFN/g' $FOUT
-sed -i 's/^RFN [[:digit:]]/RFN/g' $FOUT
+sed -i 's/^RFN[[:digit:]][[:digit:]][[:digit:]]/TAGRFN/g' $FOUT
+sed -i 's/^RFN [[:digit:]][[:digit:]]/TAGRFN/g' $FOUT
+sed -i 's/^RFN [[:digit:]]/TAGRFN/g' $FOUT
 
-sed -i 's/^RNF[[:digit:]][[:digit:]][[:digit:]]/RNF/g' $FOUT
-sed -i 's/^RNF [[:digit:]][[:digit:]]/RNF/g' $FOUT
-sed -i 's/^RNF [[:digit:]]/RNF/g' $FOUT
+sed -i 's/^RNF[[:digit:]][[:digit:]][[:digit:]]/TAGRNF/g' $FOUT
+sed -i 's/^RNF [[:digit:]][[:digit:]]/TAGRNF/g' $FOUT
+sed -i 's/^RNF [[:digit:]]/TAGRNF/g' $FOUT
 
-sed -i 's/^RN[[:digit:]][[:digit:]][[:digit:]]/RN/g' $FOUT
-sed -i 's/^RN [[:digit:]][[:digit:]]/RN/g' $FOUT
-sed -i 's/^RN [[:digit:]]/RN/g' $FOUT
+sed -i 's/^RGN[[:digit:]][[:digit:]][[:digit:]]/TAGRGN/g' $FOUT
+sed -i 's/^RGN [[:digit:]][[:digit:]]/TAGRGN/g' $FOUT
+sed -i 's/^RGN [[:digit:]]/TAGRGN/g' $FOUT
 
-sed -i 's/RFI. , RFI. , /RFI. ,/g' $FOUT
-sed -i 's/RFN. , RFN. , /RFN. ,/g' $FOUT
-sed -i 's/RNF. , RNF. , /RNF. ,/g' $FOUT
-sed -i 's/RN. , RN. , /RN. ,/g' $FOUT
+sed -i 's/TAGRFI. , TAGRFI. , /TAGRFI. ,/g' $FOUT
+sed -i 's/TAGRFN. , TAGRFN. , /TAGRFN. ,/g' $FOUT
+sed -i 's/TAGRNF. , TAGRNF. , /TAGRNF. ,/g' $FOUT
+sed -i 's/TAGRGN. , TAGRGN. , /TAGRGN. ,/g' $FOUT
 #sed -i 's/. , /. ,/g' $1
 
 # Output file
