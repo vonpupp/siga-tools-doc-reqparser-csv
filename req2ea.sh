@@ -42,6 +42,8 @@ FINPUT=$1
 #./catdoc -s ../charsets/8859-1.txt -d ../charsets/8859-1.txt REQ_CTB-v5.doc 
 
 #catdoc -s8859-1 -d8859-1 $FINPUT.doc > $FINPUT.cat
+# This cannot be done because you have to manually remove the index section
+#cp $FINPUT $FINPUT.000
 source req2ea-01unindex.sh $FINPUT.000 $FINPUT.010
 source req2ea-02preformat.sh $FINPUT.010 $FINPUT.020
 python req2ea-03quote.py $FINPUT.020 $FINPUT.021 "RFI. ,"
